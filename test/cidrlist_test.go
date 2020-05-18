@@ -1,8 +1,3 @@
-# InCidr [![Build Status](https://travis-ci.org/YaroslavPodorvanov/go-incidr.svg?branch=master)](https://travis-ci.org/YaroslavPodorvanov/go-incidr)
-Lookup IP in CIDR list
-
-### Examples
-```golang
 package test
 
 import (
@@ -24,8 +19,3 @@ func TestCidrList_Contains(t *testing.T) {
 	require.Equal(t, true, cidrlist.Contains(1<<24|1<<16|1<<8+1))
 	require.Equal(t, true, cidrlist.Contains(2<<24|1<<16|1<<8+2))
 }
-```
-
-### Alternatives
-* [github.com/yl2chen/cidranger](https://github.com/yl2chen/cidranger)
-* [github.com/c-robinson/iplib](https://github.com/c-robinson/iplib)
