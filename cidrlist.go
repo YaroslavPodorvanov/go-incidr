@@ -1,29 +1,39 @@
 package incidr
 
-import "sync/atomic"
+import (
+	"encoding/binary"
+	"net"
+)
 
 type CidrList struct {
-	data atomic.Value
+	ipv4 *IPv4CidrList
+	ipv6 *IPv6CidrList
 }
 
-func NewCidrList() *CidrList {
-	var result = new(CidrList)
-
-	result.update(nil)
-
-	return result
+func NewCidrList(ipv4 *IPv4CidrList, ipv6 *IPv6CidrList) *CidrList {
+	return &CidrList{ipv4: ipv4, ipv6: ipv6}
 }
 
-func (l *CidrList) Contains(ip uint32) bool {
-	var ranges = l.data.Load().([]Range)
+func (l *CidrList) Contains(ip net.IP) bool {
+	{
+		var ipv4 = ip.To4()
 
-	return In(ranges, ip)
-}
+		if ipv4 != nil {
+			return l.ipv4.Contains(binary.BigEndian.Uint32(ipv4))
+		}
+	}
 
-func (l *CidrList) Update(ranges []Range) {
-	l.update(ranges)
-}
+	// just in case condition
+	{
+		var ipv6 = ip.To16()
 
-func (l *CidrList) update(ranges []Range) {
-	l.data.Store(ranges)
+		if ipv6 != nil {
+			return l.ipv6.Contains(IPv6{
+				binary.BigEndian.Uint64(ipv6[:8]),
+				binary.BigEndian.Uint64(ipv6[8:]),
+			})
+		}
+	}
+
+	return false
 }

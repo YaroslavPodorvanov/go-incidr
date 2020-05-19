@@ -6,22 +6,22 @@ import (
 )
 
 func TestRangeSequenceByCIDRs(t *testing.T) {
-	require.Equal(t, []Range(nil), RangeSequenceByCIDRs(nil))
+	require.Equal(t, []IPv4Range(nil), RangeSequenceByIPv4CIDRs(nil))
 
 	require.Equal(
 		t,
-		[]Range{
+		[]IPv4Range{
 			{
 				First: 0x0,
 				Last:  0xffffffff,
 			},
 		},
-		RangeSequenceByCIDRs([]string{"0.0.0.0/0"}),
+		RangeSequenceByIPv4CIDRs([]string{"0.0.0.0/0"}),
 	)
 
 	require.Equal(
 		t,
-		[]Range{
+		[]IPv4Range{
 			{
 				First: 0x01010100,
 				Last:  0x010101ff,
@@ -35,7 +35,7 @@ func TestRangeSequenceByCIDRs(t *testing.T) {
 				Last:  0x0101037f,
 			},
 		},
-		RangeSequenceByCIDRs([]string{
+		RangeSequenceByIPv4CIDRs([]string{
 			// 2
 			"1.1.2.0/25", // will merge
 			"1.1.2.0/24", // will merge

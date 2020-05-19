@@ -1,17 +1,17 @@
 package incidr
 
-type Range struct {
+type IPv4Range struct {
 	First uint32
 	Last  uint32
 }
 
-type RangeSort []Range
+type IPv4RangeSort []IPv4Range
 
-func (c RangeSort) Len() int {
+func (c IPv4RangeSort) Len() int {
 	return len(c)
 }
 
-func (c RangeSort) Less(i, j int) bool {
+func (c IPv4RangeSort) Less(i, j int) bool {
 	a := c[i]
 	b := c[j]
 
@@ -27,6 +27,6 @@ func (c RangeSort) Less(i, j int) bool {
 	return a.Last > b.Last
 }
 
-func (c RangeSort) Swap(i, j int) {
+func (c IPv4RangeSort) Swap(i, j int) {
 	c[i], c[j] = c[j], c[i]
 }

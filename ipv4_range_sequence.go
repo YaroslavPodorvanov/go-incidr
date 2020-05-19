@@ -2,17 +2,17 @@ package incidr
 
 import "sort"
 
-func RangeSequenceByCIDRs(cidrs []string) []Range {
+func RangeSequenceByIPv4CIDRs(cidrs []string) []IPv4Range {
 	length := len(cidrs)
 
 	if length == 0 {
 		return nil
 	}
 
-	all := make([]Range, 0, length)
+	all := make([]IPv4Range, 0, length)
 
 	for _, cidr := range cidrs {
-		first, last, err := ParseCIDR(cidr)
+		first, last, err := ParseIPv4CIDR(cidr)
 
 		if err != nil {
 			// NOP
@@ -20,14 +20,14 @@ func RangeSequenceByCIDRs(cidrs []string) []Range {
 			continue
 		}
 
-		all = append(all, Range{
+		all = append(all, IPv4Range{
 			First: first,
 			Last:  last,
 		})
 	}
 
 	// O(N*ln(N))
-	sort.Sort(RangeSort(all))
+	sort.Sort(IPv4RangeSort(all))
 
 	unique := all[:1]
 
