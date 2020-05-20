@@ -34,6 +34,10 @@ func (c IPv6RangeSort) Swap(i, j int) {
 }
 
 func IPv6Less(a, b IPv6) bool {
+	if a[0] < b[0] {
+		return true
+	}
+
 	if a[0] > b[0] {
 		return false
 	}
@@ -42,6 +46,10 @@ func IPv6Less(a, b IPv6) bool {
 }
 
 func IPv6LessEqual(a, b IPv6) bool {
+	if a[0] < b[0] {
+		return true
+	}
+
 	if a[0] > b[0] {
 		return false
 	}
