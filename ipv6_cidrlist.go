@@ -19,7 +19,7 @@ func NewIPv6CidrList() *IPv6CidrList {
 func (l *IPv6CidrList) Contains(ip IPv6) bool {
 	var ranges = l.data.Load().([]IPv6Range)
 
-	return IPv6In(ranges, ip)
+	return IPv6Contains(ranges, ip)
 }
 
 func (l *IPv6CidrList) Update(ranges []IPv6Range) {

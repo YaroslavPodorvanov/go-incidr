@@ -17,7 +17,7 @@ func NewIPv4CidrList() *IPv4CidrList {
 func (l *IPv4CidrList) Contains(ip uint32) bool {
 	var ranges = l.data.Load().([]IPv4Range)
 
-	return IPv4In(ranges, ip)
+	return IPv4Contains(ranges, ip)
 }
 
 func (l *IPv4CidrList) Update(ranges []IPv4Range) {
