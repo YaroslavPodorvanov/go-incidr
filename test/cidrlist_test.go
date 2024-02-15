@@ -1,10 +1,12 @@
 package test
 
 import (
-	"github.com/YaroslavPodorvanov/go-incidr"
-	"github.com/stretchr/testify/require"
 	"net"
 	"testing"
+
+	"github.com/YaroslavPodorvanov/go-incidr"
+
+	"github.com/stretchr/testify/require"
 )
 
 func TestIpv4CidrList_Contains(t *testing.T) {

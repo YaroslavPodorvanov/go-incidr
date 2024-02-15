@@ -1,15 +1,28 @@
-# InCidr [![Build Status](https://travis-ci.org/YaroslavPodorvanov/go-incidr.svg?branch=master)](https://travis-ci.org/YaroslavPodorvanov/go-incidr)
+# InCidr
 Lookup IP in CIDR list
+
+## Terms of use<sup>[[?]](https://github.com/Tyrrrz/.github/blob/master/docs/why-so-political.md)</sup>
+
+By using this project or its source code, for any purpose and in any shape or form, you grant your **implicit agreement** to all the following statements:
+
+- You **condemn Russia and its military aggression against Ukraine**
+- You **recognize that Russia is an occupant that unlawfully invaded a sovereign state**
+- You **support Ukraine's territorial integrity, including its claims over temporarily occupied territories of Crimea and Donbas**
+- You **reject false narratives perpetuated by Russian state propaganda**
+
+To learn more about the war and how you can help, [click here](https://tyrrrz.me/ukraine). Glory to Ukraine! 🇺🇦
 
 ### Examples
 ```golang
 package test
 
 import (
-	"github.com/YaroslavPodorvanov/go-incidr"
-	"github.com/stretchr/testify/require"
 	"net"
 	"testing"
+
+	"github.com/YaroslavPodorvanov/go-incidr"
+
+	"github.com/stretchr/testify/require"
 )
 
 func TestIpv4CidrList_Contains(t *testing.T) {
